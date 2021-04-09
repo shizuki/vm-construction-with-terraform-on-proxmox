@@ -12,6 +12,12 @@ provider "proxmox" {
   pm_api_url = "https://${var.pve_host}:8006/api2/json"
   pm_user = var.pve_user
   pm_tls_insecure = true
+  pm_log_enable = true
+  pm_log_file = "terraform-plugin-proxmox.log"
+  pm_log_levels = {
+    _default = "debug"
+    _capturelog = ""
+  }
 }
 
 /* Uses cloud-init options from Proxmox 5.2 */
@@ -58,12 +64,12 @@ resource "proxmox_vm_qemu" "cloudinit-test" {
   }
 
   # vmid should use the next available ID in the sequence.
-  # vmid = 0
+  vmid = 0
 
   ssh_user = var.ssh_user
   ssh_private_key = file("~/.ssh/id_ed25519")
 
-  ipconfig0 = "${var.ipv4_address},gw=${var.ipv4_gateway}"
+  ipconfig0 = "ip=${var.ipv4_address},gw=${var.ipv4_gateway}"
   # ipconfig0 = "192.168.1.103/24,gw=192.168.1.254"
 
   sshkeys = <<EOF
