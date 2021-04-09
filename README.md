@@ -2,6 +2,9 @@
   
 ## Telmate/terraform-provider-proxmox を使った時の記録
 
+注意：
+- terraform apply した後同一ディレクトリでterraform applyする時は、terraform-plugin-proxmox.log  terraform.tfstateを削除しておかないとdestroyされるので注意
+
 ### 変数
 - 環境変数に定義しておくもの
   - `PM_PASS`  
