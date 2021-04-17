@@ -8,7 +8,7 @@
 ### 変数
 - 環境変数に定義しておくもの
   - `PM_PASS`  
-    proxmox上でterraformに定義した動作を実行するユーザーのパスワード  
+    proxmox上でterraformに定義した動作を実行するpve-userのパスワード  
     `TF_VAR_`を付けなくても読み込んで使用してくれる
 - `*.tfvars`ファイルで定義するもの
   - `pve_user`  proxmox上でterraformに定義した動作を実行するユーザー名
